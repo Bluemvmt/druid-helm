@@ -59,8 +59,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: [ "broker" ]
+          args: 
+          - broker
           env:
+          - name: JAVA_OPTS
+            value: -Ddruid.node.type=broker
           - name: POD_NAME
             valueFrom:  {fieldRef: {fieldPath: metadata.name}}
           - name: POD_NAMESPACE

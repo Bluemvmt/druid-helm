@@ -104,6 +104,8 @@ spec:
       - name: druid
         args: [ "historical" ]
         env:
+        - name: JAVA_OPTS
+          value: -Ddruid.node.type=historical
         - name: POD_NAME
           valueFrom:  {fieldRef: {fieldPath: metadata.name}}
         - name: POD_NAMESPACE
