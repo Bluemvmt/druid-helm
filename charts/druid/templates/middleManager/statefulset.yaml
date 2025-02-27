@@ -102,8 +102,11 @@ spec:
       {{- end }}
       containers:
       - name: druid
-        args: [ "middleManager" ]
+        args: 
+        - middleManager
         env:
+        - name: JAVA_OPTS
+          value: -Ddruid.node.type=middleManager
         - name: POD_NAME
           valueFrom:  {fieldRef: {fieldPath: metadata.name}}
         - name: POD_NAMESPACE

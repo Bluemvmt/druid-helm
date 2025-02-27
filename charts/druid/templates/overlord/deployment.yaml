@@ -61,6 +61,8 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args: [ "overlord" ]
           env:
+          - name: JAVA_OPTS
+            value: -Ddruid.node.type=overlord
           - name: POD_NAME
             valueFrom:  {fieldRef: {fieldPath: metadata.name}}
           - name: POD_NAMESPACE
